@@ -38,6 +38,13 @@ const TodoContainer = () => {
     setShowAddModal(false);
   };
 
+  //delete a single todo list
+  const handleDeleteTodo = (todoId) => {
+    const remainingTodo = todos.filter((todo) => todo.id !== todoId);
+    setTodos(remainingTodo);
+    toast.success("Delete todo Successfully");
+  };
+
   //edit todo
   const handleEditTodo = (todo) => {
     setTodoToUpdate(todo);
@@ -87,6 +94,7 @@ const TodoContainer = () => {
             <TodoList
               key={todo.id}
               todo={todo}
+              onDelete={handleDeleteTodo}
               onEdit={handleEditTodo}
               wishList={handleWishList}
             />
