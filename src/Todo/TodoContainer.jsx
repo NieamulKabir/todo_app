@@ -14,7 +14,7 @@ const TodoContainer = () => {
     tags: ["web", "react", "js"],
     priority: "High",
     isFavorite: true,
-    status:true
+    status:false
   };
 
   const [todos, setTodos] = useState([defaultTodo]);
