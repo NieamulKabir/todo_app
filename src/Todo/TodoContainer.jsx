@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoActions from "./TodoActions";
 import TodoList from "./TodoList";
 import AddTodoModal from "./AddTodoModal";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 const TodoContainer = () => {
   // default set a todo for understanding the ui
+
   const defaultTodo = {
     id: crypto.randomUUID(),
     title: "Learn React Native",
@@ -14,12 +15,23 @@ const TodoContainer = () => {
     tags: ["web", "react", "js"],
     priority: "High",
     isFavorite: true,
-    status:false
+    status: false,
   };
 
-  const [todos, setTodos] = useState([defaultTodo]);
+  //   const [todos, setTodos] = useState([defaultTodo]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [todoToUpdate, setTodoToUpdate] = useState(null);
+
+  // Load todos from local storage on component mount
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    return storedTodos || [defaultTodo];
+  });
+
+  // Update local storage whenever todos change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   //add a single todo and also update todo corresponding id
   const handleAddEditTodo = (newTodo, isAdd) => {
@@ -68,20 +80,20 @@ const TodoContainer = () => {
     );
   };
   //status
-  const handleStatus=(todoId)=>{
+  const handleStatus = (todoId) => {
     setTodos(
-        todos.map((todo) => {
-          if (todo.id === todoId) {
-            return {
-              ...todo,
-              status: !todo.status,
-            };
-          } else {
-            return todo;
-          }
-        })
-      );
-  }
+      todos.map((todo) => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            status: !todo.status,
+          };
+        } else {
+          return todo;
+        }
+      })
+    );
+  };
   // close modal
   const handleCloseClick = () => {
     setShowAddModal(false);
