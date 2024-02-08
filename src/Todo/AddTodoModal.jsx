@@ -10,6 +10,7 @@ const AddTodoModal = ({ onSave, onCloseClick, todoToUpdate }) => {
       tags: [],
       priority: "",
       isFavorite: false,
+      status:true
     }
   );
 

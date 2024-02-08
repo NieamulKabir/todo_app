@@ -14,6 +14,7 @@ const TodoContainer = () => {
     tags: ["web", "react", "js"],
     priority: "High",
     isFavorite: true,
+    status:true
   };
 
   const [todos, setTodos] = useState([defaultTodo]);
@@ -51,6 +52,7 @@ const TodoContainer = () => {
     setShowAddModal(true);
   };
 
+  //wishlist
   const handleWishList = (todoId) => {
     setTodos(
       todos.map((todo) => {
@@ -65,6 +67,21 @@ const TodoContainer = () => {
       })
     );
   };
+  //status
+  const handleStatus=(todoId)=>{
+    setTodos(
+        todos.map((todo) => {
+          if (todo.id === todoId) {
+            return {
+              ...todo,
+              status: !todo.status,
+            };
+          } else {
+            return todo;
+          }
+        })
+      );
+  }
   // close modal
   const handleCloseClick = () => {
     setShowAddModal(false);
@@ -96,6 +113,7 @@ const TodoContainer = () => {
               todo={todo}
               onDelete={handleDeleteTodo}
               onEdit={handleEditTodo}
+              statusBar={handleStatus}
               wishList={handleWishList}
             />
           ))}

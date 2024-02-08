@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import { FaHeart } from "react-icons/fa";
-const TodoList = ({ todo, onEdit, wishList, onDelete }) => {
+import { IoMdDoneAll } from "react-icons/io";
+import { MdIncompleteCircle } from "react-icons/md";
+
+const TodoList = ({ todo, onEdit, wishList, statusBar, onDelete }) => {
   // priority based color
   const priorityColor = (priority) => {
     if (priority === "High") {
@@ -27,6 +30,18 @@ const TodoList = ({ todo, onEdit, wishList, onDelete }) => {
           </button>
         </div>
         <p>{todo.description}</p>
+        <button onClick={() => statusBar(todo.id)} className="flex">
+          Status :{" "}
+          {todo.status ? (
+            <p className="flex items-center text-green-600">
+              {" "}
+              <IoMdDoneAll />
+              Completed
+            </p>
+          ) : (
+            <p className="flex items-center text-red-600"> <MdIncompleteCircle />Incomplete</p>
+          )}
+        </button>
         <p className={`font-semibold  ${priorityColor(todo.priority)}`}>
           {todo.priority}
         </p>
