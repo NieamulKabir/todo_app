@@ -14,6 +14,7 @@ const AddTodoModal = ({ onSave, onCloseClick, todoToUpdate }) => {
     }
   );
 
+  // eslint-disable-next-line no-unused-vars
   const [isAdd, setIsAdd] = useState(Object.is(todoToUpdate, null));
 
   const handleChange = (e) => {

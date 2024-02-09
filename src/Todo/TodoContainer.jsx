@@ -7,6 +7,16 @@ import NoTodoFound from "./NoTodoFound";
 
 const TodoContainer = () => {
   // default set a todo for understanding the ui
+  const defaultTodo = {
+    id: crypto.randomUUID(),
+    title: "Learn React",
+    description:
+      "Many companies are using React to build their websites, web applications, and even mobile apps. This means that there are plenty of job opportunities available for those who possess React skills. Learning React can make you a highly sought-after candidate in the world of web development.",
+    tags: ["Web", "React", "Js"],
+    priority: "High",
+    isFavorite: true,
+    status: true,
+  };
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [todoToUpdate, setTodoToUpdate] = useState(null);
@@ -15,7 +25,7 @@ const TodoContainer = () => {
   // Load todos from  local storage on component mount
   const [todos, setTodos] = useState(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos"));
-    return storedTodos || [];
+    return storedTodos || [defaultTodo];
   });
 
   // Update local storage whenever todos change
@@ -29,7 +39,6 @@ const TodoContainer = () => {
   const handleAddEditTodo = (newTodo, isAdd) => {
     if (isAdd) {
       setTodos([...todos, newTodo]);
-
       toast.success("Successfully added Todo");
     } else {
       setTodos(
@@ -37,7 +46,6 @@ const TodoContainer = () => {
           if (todo.id === newTodo.id) {
             return newTodo;
           }
-
           return todo;
         })
       );
@@ -74,6 +82,7 @@ const TodoContainer = () => {
       })
     );
   };
+
   //status
   const handleStatus = (todoId) => {
     setTodos(
@@ -89,6 +98,7 @@ const TodoContainer = () => {
       })
     );
   };
+
   // close modal
   const handleCloseClick = () => {
     setShowAddModal(false);
@@ -109,7 +119,7 @@ const TodoContainer = () => {
         Add Your Todo`s
       </h1>
       <div className="w-[90%] mx-auto mt-10  bg-slate-100 px-4 py-4 md:mb-10 rounded-3xl">
-        {/* todo action button add single todo and delete aLL then todo through this button */}
+        {/* todo action button add single todo */}
         <TodoActions
           storeTodo={storeTodo}
           onAddClick={() => setShowAddModal(true)}
