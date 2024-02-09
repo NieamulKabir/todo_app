@@ -21,6 +21,7 @@ const TodoContainer = () => {
   //   const [todos, setTodos] = useState([defaultTodo]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [todoToUpdate, setTodoToUpdate] = useState(null);
+  const [storeTodo,setStoreTodo]=useState([])
 
   // Load todos from local storage on component mount
   const [todos, setTodos] = useState(() => {
@@ -31,6 +32,8 @@ const TodoContainer = () => {
   // Update local storage whenever todos change
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
+    const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+    setStoreTodo(storedTodos)
   }, [todos]);
 
   //add a single todo and also update todo corresponding id
@@ -115,7 +118,7 @@ const TodoContainer = () => {
       </h1>
       <div className="w-[90%] mx-auto mt-10  bg-slate-100 px-4 py-4 rounded-3xl">
         {/* todo action button add single todo and delete aLL then todo through this button */}
-        <TodoActions onAddClick={() => setShowAddModal(true)} />
+        <TodoActions storeTodo={storeTodo} onAddClick={() => setShowAddModal(true)} />
 
         {/* todo items  */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
