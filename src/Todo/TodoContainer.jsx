@@ -3,6 +3,7 @@ import TodoActions from "./TodoActions";
 import TodoList from "./TodoList";
 import AddTodoModal from "./AddTodoModal";
 import toast from "react-hot-toast";
+import NoTodoFound from "./NoTodoFound";
 
 const TodoContainer = () => {
   // default set a todo for understanding the ui
@@ -116,16 +117,17 @@ const TodoContainer = () => {
 
         {/* todo items  */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6 mb-10 md:my-10 mx-2 md:mx-10">
-          {todos.map((todo) => (
+          {todos.length > 0 ? (
             <TodoList
-              key={todo.id}
-              todo={todo}
+              todos={todos}
               onDelete={handleDeleteTodo}
               onEdit={handleEditTodo}
               statusBar={handleStatus}
               wishList={handleWishList}
             />
-          ))}
+          ) : (
+            <NoTodoFound />
+          )}
         </div>
       </div>
     </div>
