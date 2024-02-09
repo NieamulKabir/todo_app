@@ -2,7 +2,7 @@ import heroImg from "./assets/todo.svg";
 
 const HeroSection = () => {
   return (
-    <section className=" pt-20 md:pt-1 md:mt-[100px] mx-10 ">
+    <section className="pt-20 md:pt-1 mx-10 mb-10 md:mb-1">
       <div className="container lg:px-20">
         <div className="grid items-center gap-6 md:grid-cols-2">
           <div className="flex justify-center md:order-2">

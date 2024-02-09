@@ -2,6 +2,8 @@
 import { FaHeart } from "react-icons/fa";
 import { IoMdDoneAll } from "react-icons/io";
 import { MdIncompleteCircle } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 const TodoList = ({ todo, onEdit, wishList, statusBar, onDelete }) => {
   // priority based color
@@ -20,7 +22,7 @@ const TodoList = ({ todo, onEdit, wishList, statusBar, onDelete }) => {
     <div className="card  bg-sky-100 text-black">
       <div className="card-body ">
         <div className="flex justify-between items-center">
-          <h2 className="card-title">{todo.title} </h2>
+          <h2 className="card-title text-yellow-500">{todo.title} </h2>
           <button onClick={() => wishList(todo.id)}>
             {todo.isFavorite ? (
               <FaHeart color="red" />
@@ -39,7 +41,11 @@ const TodoList = ({ todo, onEdit, wishList, statusBar, onDelete }) => {
               Completed
             </p>
           ) : (
-            <p className="flex items-center text-red-600"> <MdIncompleteCircle />Incomplete</p>
+            <p className="flex items-center text-red-600">
+              {" "}
+              <MdIncompleteCircle />
+              Incomplete
+            </p>
           )}
         </button>
         <p className={`font-semibold  ${priorityColor(todo.priority)}`}>
@@ -55,12 +61,15 @@ const TodoList = ({ todo, onEdit, wishList, statusBar, onDelete }) => {
           ))}
         </ul>
 
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-end mt-4">
           <button onClick={() => onDelete(todo.id)} className="btn btn-primary">
-            Delete
+            <MdDelete className="text-xl "/> Delete
           </button>
-          <button onClick={() => onEdit(todo)} className="btn btn-ghost">
-            Edit
+          <button
+            onClick={() => onEdit(todo)}
+            className="btn btn-ghost bg-sky-300"
+          >
+            <FaEdit /> Edit
           </button>
         </div>
       </div>
