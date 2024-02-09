@@ -1,8 +1,12 @@
-# React + Vite
+<h1>
+    <a href="https://nieamul-todo-app.netlify.app/" target="_blank" rel="noopener noreferrer"></a>
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<ul>
+    <li>The ability to add a new task</li>
+      <li>The ability to edit an existing task.</li>
+      <li>The ability to mark a task as completed.</li>
+      <li>The ability to delete a task.</li>
+      <li>Can Add favorite todo & also can remove</li>
+      <li>Stored Data in localStorage to persist tasks even if the user refreshes the page </li>
+</ul>
